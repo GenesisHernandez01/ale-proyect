@@ -1,74 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/main.css" />
-  </head>
-  <body>
-    <header>
-      <nav class="menu">
-        <div class="menu-logo">
-          <div class="logo">Ale Fit</div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acceso a la Plataforma - Alejandro Fitness</title>
+  
+  <!-- CSS de Bootstrap y Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+<body>
+  <!-- Barra de navegación -->
+  <header>
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Alejandro Fitness</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Bienvenido</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item"><a class="nav-link active" href="../pages/ale.html">Asesorías</a></li>
+              <li class="nav-item"><a class="nav-link active" href="../pages/plataforma.html">Plataforma</a></li>
+              <li class="nav-item"><a class="nav-link active" href="../pages/planes.html">Planes</a></li>
+              <li class="nav-item"><a class="nav-link active" href="../pages/formulario.html">Contacto</a></li>
+            </ul>
+          </div>
         </div>
-        <div class="menubar">
-          <a href="../index.html">Inicio</a>
-          <a href="./formulario.html">Contacto</a>
-          <a href="./ale.html">Asesorias</a>
-          <a href="./planes.html">Planes</a>
-        </div>
-      </nav>
-    </header>
-    <div class="form-container">
-      <h1>Ingresa a tu cuenta</h1>
+      </div>
+    </nav>
+  </header>
 
-      <form action="/submit" method="POST">
-        <label for="username">Nombre de Usuario</label>
-        <input type="text" id="username" name="username" required />
+  <!-- Formulario de acceso -->
+  <div class="container mt-5 pt-5 form-container">
+    <h1>Ingresa a tu cuenta</h1>
+    <form id="loginForm">
+      <div class="mb-3">
+        <label for="username" class="form-label">Nombre de Usuario</label>
+        <input type="text" id="username" name="username" class="form-control" required />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Contraseña</label>
+        <input type="password" id="password" name="password" class="form-control" required />
+      </div>
+      <div class="form-check mb-3">
+        <input type="checkbox" id="policy" name="policy" class="form-check-input" />
+        <label class="form-check-label" for="policy">Recuérdame</label>
+      </div>
+      <button type="submit" class="btn btn-primary">ACCEDER</button>
 
-        <label for="email">Contraseña</label>
-        <input type="email" id="email" name="email" required />
+      <p class="mt-3">¿Has perdido tu contraseña?</p>
+      <p>Si no cuentas con un usuario, puedes adquirir tu membresía</p>
+      <button type="button" class="btn btn-secondary" id="acquireMembershipBtn">ADQUIRIR MEMBRECIA</button>
+    </form>
+  </div>
 
-        <div class="checkbox-container">
-          <input type="checkbox" id="policy" name="policy" required />
+  <!-- Footer -->
+  <footer class="footer bg-dark text-white text-center py-3">
+    <p class="mb-1">Síguenos en</p>
+    <a href="https://www.instagram.com/alejandr0" target="_blank" aria-label="Instagram de Alejandro">
+      <img class="icons-footer" src="../iconos/instagram-brands-solid.svg" alt="Instagram" />
+    </a>
+    <a href="https://www.instagram.com/reel/C-DTSLmtofD/?utm_source=ig_web_button_share_sheet" target="_blank" aria-label="Video de Alejandro">
+      <img class="icons-footer" src="../iconos/youtube-brands-solid.svg" alt="Video de Alejandro" />
+    </a>
+  </footer>
 
-          <label class="labelpolicy" for="policy">Recuerdáme</label>
-        </div>
+  <!-- Scripts de Bootstrap y JavaScript personalizado -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // JavaScript para manejar el formulario
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Evita que el formulario se envíe
 
-        <input type="submit" value="ACCEDER" />
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
 
-        <p>¿Has perdido tu contraseña?</p>
+      // Aquí puedes agregar la lógica para validar el usuario y la contraseña
+      if (username === '' || password === '') {
+        alert('Por favor, completa todos los campos.');
+      } else {
+        // Aquí puedes enviar los datos al servidor
+        console.log('Enviando:', { username, password });
+        // Redireccionar o mostrar un mensaje de éxito
+        alert('Accediendo a tu cuenta...');
+      }
+    });
 
-        <p>Si no cuentas con un usuario, puedes adquirir tu membrecia</p>
-
-        <input class="buttonmemb" type="submit" value="ADQUIRIR MEMBRECIA" />
-      </form>
-    </div>
-    <footer class="footer" role="contentinfo">
-      <p class="parrafofooter">Síguenos en</p>
-      <a
-        href="https://www.instagram.com/alejandr0"
-        target="_blank"
-        aria-label="Instagram de Alejandro"
-      >
-        <img
-          class="icons-footer"
-          src="../iconos/instagram-brands-solid.svg"
-          alt="Instagram"
-        />
-      </a>
-      <a
-        href="https://www.instagram.com/reel/C-DTSLmtofD/?utm_source=ig_web_button_share_sheet"
-        target="_blank"
-        aria-label="Video de Alejandro"
-      >
-        <img
-          class="icons-footer"
-          src="../iconos/youtube-brands-solid.svg"
-          alt="Video de Alejandro"
-        />
-      </a>
-    </footer>
-  </body>
+    // Lógica para adquirir membresía
+    document.getElementById('acquireMembershipBtn').addEventListener('click', function() {
+      alert('Redirigiendo a la página de adquisición de membresía...');
+      // Aquí puedes redirigir a otra página
+      // window.location.href = '../pages/adquirir_membresia.html'; // Ejemplo de redirección
+    });
+  </script>
+</body>
 </html>

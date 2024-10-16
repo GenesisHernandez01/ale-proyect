@@ -1,86 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Ale Fit - Planes de Suscripción</title>
     <link rel="stylesheet" href="../css/main.css" />
-  </head>
-  <body>
+    <style>
+        /* Estilos para el modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        /* Estilo del formulario de pago */
+        .payment-form {
+            display: none; /* Oculto por defecto */
+        }
+
+        .payment-form input {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
     <header>
-      <nav class="menu">
-        <div class="menu-logo">
-          <div class="logo">Ale Fit</div>
-        </div>
-        <div class="menubar">
-          <a href="../index.html">Inicio</a>
-          <a href="./formulario.html">Contacto</a>
-          <a href="./plataforma.html">Plataforma</a>
-          <a href="./ale.html">Asesorias</a>
-        </div>
-      </nav>
+        <nav class="menu">
+            <div class="menu-logo">
+                <div class="logo">Ale Fit</div>
+            </div>
+            <div class="menubar">
+                <a href="../index.html">Inicio</a>
+                <a href="./formulario.html">Contacto</a>
+                <a href="./plataforma.html">Plataforma</a>
+                <a href="./ale.html">Asesorías</a>
+            </div>
+        </nav>
     </header>
     <div class="background">
-      <h1 class="estilo-titulo">Conoce nuestros planes</h1>
-
-      <div class="container">
-        <div class="plan">
-          <h2>Plan de Suscripción</h2>
-          <div class="price">$ 18 / mes</div>
-          <ul>
-            <li>Rutina personalizada</li>
-            <li>Plan de Alimentación y suplementos</li>
-            <li>Acceso a la Plataforma 24/7</li>
-            <li>Book de recetas fit</li>
-            <li>Controles quincenales via WhatsApp</li>
-          </ul>
-          <p class="pagoplan">
-            Con este plan, podras afiliar débito automatico
-          </p>
-          <button>Suscribirse</button>
+        <h1 class="estilo-titulo">Conoce nuestros planes</h1>
+        <div class="container">
+            <div class="plan">
+                <h2>Plan de Suscripción</h2>
+                <div class="price">$ 18 / mes</div>
+                <ul>
+                    <li>Rutina personalizada</li>
+                    <li>Plan de Alimentación y suplementos</li>
+                    <li>Acceso a la Plataforma 24/7</li>
+                    <li>Book de recetas fit</li>
+                    <li>Controles quincenales via WhatsApp</li>
+                </ul>
+                <p class="pagoplan">Con este plan, podrás afiliar débito automático</p>
+                <button onclick="preparePayment('Plan de Suscripción', 18)">Suscribirse</button>
+            </div>
+            <div class="plan">
+                <h2>Plan Básico</h2>
+                <div class="price">$ 22 / mes</div>
+                <ul>
+                    <li>Rutina personalizada</li>
+                    <li>Plan de Alimentación y suplementos</li>
+                    <li>Controles quincenales via WhatsApp</li>
+                </ul>
+                <p class="pagoplan2">Con este plan, podrás pagar mes a mes a través de transferencia bancaria</p>
+                <button onclick="preparePayment('Plan Básico', 22)">Suscribirse</button>
+            </div>
         </div>
-        <div class="plan">
-          <h2>Plan Básico</h2>
-          <div class="price">$ 22 / mes</div>
-          <ul>
-            <li>Rutina personalizada</li>
-            <li>Plan de Alimentación y suplementos</li>
-            <li>Controles quincenales via WhatsApp</li>
-          </ul>
-          <div></div>
-          <p class="pagoplan2">
-            Con este plan, podrás pagar mes a mes a través de transferencia
-            bancaria
-          </p>
-          <button>Suscribirse</button>
-        </div>
-      </div>
-      <input class="buttonmemb" type="submit" value="ADQUIRIR MEMBRECIA" />
+        <input class="buttonmemb" type="submit" value="ADQUIRIR MEMBRECIA" />
     </div>
+
+    <!-- Modal -->
+    <div id="purchaseModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="modalMessage"></p>
+            <div class="payment-form" id="paymentForm">
+                <h3>Detalles de Pago</h3>
+                <form id="paymentDetails">
+                    <input type="text" placeholder="Número de tarjeta" id="cardNumber" required />
+                    <input type="text" placeholder="Nombre en la tarjeta" id="cardName" required />
+                    <input type="text" placeholder="Fecha de vencimiento (MM/AA)" id="expiryDate" required />
+                    <input type="text" placeholder="CVV" id="cvv" required />
+                    <button type="button" onclick="submitPayment()">Realizar Pago</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer" role="contentinfo">
-      <p class="parrafofooter">Síguenos en</p>
-      <a
-        href="https://www.instagram.com/alejandr0"
-        target="_blank"
-        aria-label="Instagram de Alejandro"
-      >
-        <img
-          class="icons-footer"
-          src="../iconos/instagram-brands-solid.svg"
-          alt="Instagram"
-        />
-      </a>
-      <a
-        href="https://www.instagram.com/reel/C-DTSLmtofD/?utm_source=ig_web_button_share_sheet"
-        target="_blank"
-        aria-label="Video de Alejandro"
-      >
-        <img
-          class="icons-footer"
-          src="../iconos/youtube-brands-solid.svg"
-          alt="Video de Alejandro"
-        />
-      </a>
+        <p class="parrafofooter">Síguenos en</p>
+        <a href="https://www.instagram.com/alejandr0" target="_blank" aria-label="Instagram de Alejandro">
+            <img class="icons-footer" src="../iconos/instagram-brands-solid.svg" alt="Instagram" />
+        </a>
+        <a href="https://www.instagram.com/reel/C-DTSLmtofD/?utm_source=ig_web_button_share_sheet" target="_blank" aria-label="Video de Alejandro">
+            <img class="icons-footer" src="../iconos/youtube-brands-solid.svg" alt="Video de Alejandro" />
+        </a>
     </footer>
-  </body>
+
+    <script>
+        function preparePayment(planName, price) {
+            // Simulación de validaciones
+            const userAuthenticated = true; // Cambia esto según si el usuario está autenticado
+
+            if (!userAuthenticated) {
+                alert("Por favor, inicie sesión para suscribirse.");
+                return;
+            }
+
+            // Mostrar mensaje en el modal
+            const modalMessage = `Estás a punto de suscribirte al ${planName} por $${price} al mes.`;
+            document.getElementById("modalMessage").innerText = modalMessage;
+
+            // Mostrar el formulario de pago
+            document.getElementById("paymentForm").style.display = "block";
+            document.getElementById("purchaseModal").style.display = "block";
+        }
+
+        function submitPayment() {
+            // Aquí iría la lógica para procesar el pago
+            // Este es un ejemplo simple, en un caso real deberías enviar estos datos a tu backend o a una API de pagos
+
+            const cardNumber = document.getElementById("cardNumber").value;
+            const cardName = document.getElementById("cardName").value;
+            const expiryDate = document.getElementById("expiryDate").value;
+            const cvv = document.getElementById("cvv").value;
+
+            // Validaciones simples
+            if (!cardNumber || !cardName || !expiryDate || !cvv) {
+                alert("Por favor completa todos los campos.");
+                return;
+            }
+
+            // Mostrar mensaje de éxito
+            alert(`¡Pago realizado con éxito! Se ha suscrito al plan con el número de tarjeta: ${cardNumber}`);
+
+            // Cerrar modal después de la compra
+            closeModal();
+        }
+
+        function closeModal() {
+            document.getElementById("purchaseModal").style.display = "none";
+            document.getElementById("paymentForm").style.display = "none"; // Oculta el formulario de pago
+            document.getElementById("paymentDetails").reset(); // Resetea el formulario de pago
+        }
+
+        // Cerrar el modal si se hace clic fuera de él
+        window.onclick = function(event) {
+            const modal = document.getElementById("purchaseModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+                document.getElementById("paymentForm").style.display = "none"; // Oculta el formulario de pago
+            }
+        }
+    </script>
+</body>
 </html>
+

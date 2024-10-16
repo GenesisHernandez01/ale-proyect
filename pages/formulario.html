@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="../scss/main.scss" />
+    <title>Contacto - Alejandro Fitness</title>
+    <link rel="stylesheet" href="../css/main.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-   
-  </head>
+</head>
+<body>
   <nav class="navbar navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Alejandro Fitness</a>
@@ -43,73 +41,74 @@
       </div>
     </div>
   </nav>
-      </header>
-    
-    <div class="form-container">
-      <h1>Contacto</h1>
-      <h2>Envianos un mensaje</h2>
-      <form action="/submit" method="POST">
-        <label for="username">Nombre de Usuario</label>
-        <input type="text" id="username" name="username" required />
 
-        <label for="email">Correo Electrónico</label>
-        <input type="email" id="email" name="email" required />
+  <div class="form-container" style="margin-top: 70px; padding: 20px;">
+    <h1>Contacto</h1>
+    <h2>Envíanos un mensaje</h2>
+    <form id="contactForm" action="/submit" method="POST">
+      <label for="username">Nombre de Usuario</label>
+      <input type="text" id="username" name="username" required />
 
-        <label for="phone">Teléfono</label>
-        <input type="tel" id="phone" name="phone" required />
+      <label for="email">Correo Electrónico</label>
+      <input type="email" id="email" name="email" required />
 
-        <label for="message">Mensaje</label>
-        <textarea id="message" name="message" rows="4" required></textarea>
+      <label for="phone">Teléfono</label>
+      <input type="tel" id="phone" name="phone" required />
 
-        <div class="checkbox-container">
-          <input type="checkbox" id="policy" name="policy" required />
+      <label for="message">Mensaje</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
 
-          <label class="labelpolicy" for="policy"
-            >He leído y acepto la política de cambios</label
-          >
+      <div class="checkbox-container">
+        <input type="checkbox" id="policy" name="policy" required />
+        <label class="labelpolicy" for="policy">He leído y acepto la política de cambios</label>
+      </div>
+
+      <input type="submit" value="Enviar" />
+    </form>
+  </div>
+
+  <!-- Modal de Confirmación -->
+  <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmationModalLabel">Confirmación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-
-        <input type="submit" value="Enviar" />
-      </form>
+        <div class="modal-body">
+          Hemos recibido tu información, recibirás en tu correo electrónico un nuevo formulario para que empecemos a trabajar juntos.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
     </div>
-    <footer class="footer" role="contentinfo">
-      <p class="parrafofooter">Síguenos en</p>
-      <a
-        href="https://www.instagram.com/alejandr0"
-        target="_blank"
-        aria-label="Instagram de Alejandro"
-      >
-        <img
-          class="icons-footer"
-          src="../iconos/instagram-brands-solid.svg"
-          alt="Instagram"
-        />
-      </a>
-      <a
-        href="https://www.instagram.com/reel/C-DTSLmtofD/?utm_source=ig_web_button_share_sheet"
-        target="_blank"
-        aria-label="Video de Alejandro"
-      >
-        <img
-          class="icons-footer"
-          src="../iconos/youtube-brands-solid.svg"
-          alt="Video de Alejandro"
-        />
-      </a>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </div>
 
-    
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-   
-  </body>
+  <footer class="footer" role="contentinfo">
+    <p class="parrafofooter">Síguenos en</p>
+    <a href="https://www.instagram.com/alejandr0" target="_blank" aria-label="Instagram de Alejandro">
+      <img class="icons-footer" src="../iconos/instagram-brands-solid.svg" alt="Instagram" />
+    </a>
+    <a href="https://www.instagram.com/reel/C-DTSLmtofD/?utm_source=ig_web_button_share_sheet" target="_blank" aria-label="Video de Alejandro">
+      <img class="icons-footer" src="../iconos/youtube-brands-solid.svg" alt="Video de Alejandro" />
+    </a>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Evita el envío tradicional
+
+      // Aquí podrías añadir la lógica para enviar los datos del formulario al servidor si lo deseas.
+
+      // Mostrar el modal de confirmación
+      var confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+      confirmationModal.show();
+
+      // Limpiar el formulario
+      this.reset();
+    });
+  </script>
+</body>
 </html>

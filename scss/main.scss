@@ -9,6 +9,11 @@ $shadow-color2: #ffcdac;
 $border-color: #ccc;
 $box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
+$spacing-small: 5px;
+$spacing-medium: 10px;
+$spacing-large: 20px;
+
+
 // Mixins
 @mixin flex-center($direction: row, $justify: center, $align: center) {
   display: flex;
@@ -80,17 +85,20 @@ header {
   padding: 14px 20px;
   text-decoration: none;
   text-align: center;
+  transition: background-color 0.3s; // Añadir transición
 
   &:hover {
-    background-color: #555;
+    background-color: $secondary-color; // Uso de variable
   }
 }
+
 
 // Background
 .background {
   background: linear-gradient(45deg, #070707), url("../imagenes/imagen1.jpg");
   background-size: cover;
   background-position: center;
+  background-color: #000000;
   min-height: calc(100vh - 160px);
   @include flex-center(column);
   text-align: center;
@@ -134,10 +142,19 @@ img {
     margin: 0 10px;
   }
 }
+/* Añadir animación a los iconos del footer */
+.icons-footer {
+  transition: transform 0.3s ease;
+}
+
+.icons-footer:hover {
+  transform: scale(1.2); /* Aumentar tamaño al hacer hover */
+}
+
 
 // Formulario
 .form-container {
-  background-color: #fff;
+  background-color: #881c1c;
   padding: 20px 60px 40px 40px;
   border-radius: 8px;
   box-shadow: $box-shadow;
