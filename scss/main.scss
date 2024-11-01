@@ -130,7 +130,7 @@ img {
   @include flex-center();
   padding: 10px;
   width: 100%;
-
+  
   .parrafofooter {
     margin: 0 20px;
     font-size: large;
@@ -140,6 +140,8 @@ img {
     height: 40px;
     width: 40px;
     margin: 0 10px;
+    transform: scale(1.2);
+    transition: transform 0.2s ease-in-out;
   }
 }
 /* Añadir animación a los iconos del footer */
